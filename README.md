@@ -15,9 +15,9 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 | Behavior      | Example Input         | Example Output        |
 | ------------- | ------------- | ------------- |
 | Do nothing to non-alphabetical characters  | 5  | 5  |
-| Add 'ay' to single letter words beginning with a vowel  | i  | iay |
-| Add 'way' to words (more than one letter) beginning with a vowel  | eagle  | eagleway |
-| Move all consecutive consonants to the end and add 'ay' to words beginning with one or more consonants | Content Cell  | Content Cell  |
+| For single letter words beginning with a vowel append 'ay' | i  | iay |
+| For words that contain more than a single letter and begin with a vowel append 'way' | eagle  | eagleway |
+| For words beginning with one or more consonants, move all consecutive consonants to the end and add 'ay'. | cool  | oolcay  |
 | If the first consonant is 'qu' move 'u' and 'q' along and add 'ay' | squeal  | ealsquay |
 | If the word begins with 'Y' treat it as a consonant | you | ouyay |
 
