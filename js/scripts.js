@@ -1,28 +1,50 @@
 'use strict';
 // GLOBAL VARS
+// var stringInput = $('#pigLatinInput').val();
+var vowels = RegExp(/[aeiou]/i);
+var consonants = RegExp(/[^aeiou]/i);
+var quCons = RegExp(/qu\w*?/gi);
+// RegExp that looks for a 'q' followed immediately by a 'u'
+// string.match(/qu\w*?/gi)
 
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
 
 function wordsStartingWithVowel(string) {
-  var splitSentence = string.split('');
   if (string.length == 1) {
     var singleLetterWord = splitSentence.map(function(letter) {
       return letter.replace(/[ai]/gi, letter + 'ay');
     });
     $('#pigLatinTranslation h4').text(singleLetterWord.join(''));
-  } else if (string.charAt(0) == string.match(/[aeiou]/i)) {
+  } else if (string.charAt(0) == string.match(vowels)) {
     string = string + 'way';
     $('#pigLatinTranslation h4').text(string);
   } else { console.log('No Match Found'); }
 }
 
 function wordsStartingWithCon(string) {
-  var splitString = string.split('');
-  if((string.length > 1) && (string.charAt(0) == string.match(/[^aeiou]/i))) {
-    string = string.slice(1) + string.charAt(0) + 'way';
-    console.log(string);
+  var splitString = string.split(' ');
+  if(string.length > 1 && string.charAt(0) == string.match(consonants)) {
+    if (string.match(quCons)) {
+      var qIndex = string.indexOf('qu');
+      if(qIndex !== -1) {
+        console.log('Cons q & u do not start at the beginning of the word');
+      } else { console.log('test'); }
+      console.log(qIndex);
+      // var beforeQ = string.
+      // var uIndex = string.indexOf('u');
+      // var afterU = string.slice(uIndex + 1);
+      // console.log(string.slice(uIndex + 1));
+      // string = string.slice(uIndex + 1) + string.slice(qIndex -1) + 'ay';
+      // string = string.slice(uIndex + 1) + string.slice(qIndex - 1, uIndex + 1) + 'ay';
+      // console.log(string);
+      // string = string.slice(qIndex) + 'ay';
+    }
+    // } else {
+    //   string = string.slice(1) + string.charAt(0) + 'way';
+    // }
+    // console.log(string);
   } else console.log('This word does not start with a consonant');
 }
 
